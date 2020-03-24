@@ -10,12 +10,16 @@ $("#search-button").click(function(){
         return response.json();
       })
       .then(function(data) {
-        let image = ""
-        $(".gallery").append("<img scr="+ +">")
-        //$(".text-center").html(`<img src ="${data.url}">`);
-        //$(".image").append("<img src=" + data + Input">")
-
-
+          console.log(data.data[0].url)
+        let url = data.data[0].images.fixed_width.url;
+    $(".text-center").html(`<img src="${url}">`);
+         data.data.forEach(function(image){
+              $(".text-center").append(`<img src="${image.images.fixed_width.url}">`);
+            // $(".image").append('<div class="image">\
+            //         <a class="thumbnail" href ="' + image.images.fixed_width.url + '">\
+            //             <img src="' + image.images.fixed_width.url + '"/>\
+            //         </a>\
+            //     </div>');
+         });
     });
 });
-
